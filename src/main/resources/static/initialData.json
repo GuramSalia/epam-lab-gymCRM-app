@@ -1,0 +1,64 @@
+{
+  "Trainer": [
+    {
+      "id": 1,
+      "specialization": "CARDIO",
+      "firstName": "Tim",
+      "lastName": "Smith",
+      "username": "Tim.Smith",
+      "password": "abcdefghij",
+      "active": true
+    },
+    {
+      "id": 2,
+      "specialization": "STRENGTH",
+      "firstName": "Sam",
+      "lastName": "Jones",
+      "username": "Sam.Jones",
+      "password": "bcdefghijk",
+      "active": true
+    }
+  ],
+  "Customer": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "username": "John.Doe",
+      "address": "address of customer 1",
+      "dob": "2000-02-21",
+      "password": "ijklmnopqr",
+      "active": true
+    },
+    {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "username": "Jane.Smith",
+      "address": "address of customer 2",
+      "dob": "2000-01-21",
+      "password": "mnopqrstuv",
+      "active": true
+    }
+  ],
+  "Training": [
+    {
+      "id": 1,
+      "customerId": 1,
+      "trainerId": 1,
+      "name": "Cardio Workout",
+      "type": "CARDIO",
+      "date": "2024-02-21",
+      "durationInMinutes": 60
+    },
+    {
+      "id": 2,
+      "customerId": 2,
+      "trainerId": 2,
+      "name": "Strength Training",
+      "type": "STRENGTH",
+      "date": "2024-02-22",
+      "durationInMinutes": 45
+    }
+  ]
+}
