@@ -1,5 +1,6 @@
 package com.epam.epamlabgymCRMapp.model;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,16 +8,23 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
+@Table(name = "Customers")
 @Setter
 @Getter
 public class Customer extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CustomerId")
     private int customerId;
+    @Column(name = "DateOfBirth")
     private Date dob;
+    @Column(name = "Address")
     private String address;
 
     @Override
     public String toString() {
-        String isActiveString = isActive() ? "true" : "false";
+        String isActiveString = getIsActive() ? "true" : "false";
         Calendar calendar = Calendar.getInstance();
         String dobString = "null";
         if (dob != null) {

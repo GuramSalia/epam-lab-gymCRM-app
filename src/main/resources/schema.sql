@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Users (
-    UserID SERIAL PRIMARY KEY,
+    UserId SERIAL PRIMARY KEY,
     FirstName VARCHAR(255) NOT NULL,
     LastName VARCHAR(255) NOT NULL,
     Username VARCHAR(255) NOT NULL,
@@ -8,81 +8,81 @@ CREATE TABLE IF NOT EXISTS Users (
 );
 
 CREATE TABLE IF NOT EXISTS Customers (
-    CustomerID SERIAL PRIMARY KEY,
+    CustomerId SERIAL PRIMARY KEY,
     DateOfBirth DATE,
     Address VARCHAR(255),
-    UserID INT NOT NULL UNIQUE,
-    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+    UserId INT NOT NULL UNIQUE,
+    FOREIGN KEY (UserId) REFERENCES Users(UserId) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS TrainingTypes (
-    TrainingTypeID SERIAL PRIMARY KEY,
+    TrainingTypeId SERIAL PRIMARY KEY,
     TrainingTypeName VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Trainers (
-    TrainerID SERIAL PRIMARY KEY,
-    TrainingTypeID INT,
-    UserID INT NOT NULL UNIQUE,
-    FOREIGN KEY (TrainingTypeID) REFERENCES TrainingTypes(TrainingTypeID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+    TrainerId SERIAL PRIMARY KEY,
+    TrainingTypeId INT,
+    UserId INT NOT NULL UNIQUE,
+    FOREIGN KEY (TrainingTypeId) REFERENCES TrainingTypes(TrainingTypeId),
+    FOREIGN KEY (UserId) REFERENCES Users(UserId) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Trainings (
-    TrainingID SERIAL PRIMARY KEY,
-    CustomerID INT,
-    TrainerID INT,
+    TrainingId SERIAL PRIMARY KEY,
+    CustomerId INT,
+    TrainerId INT,
     TrainingName VARCHAR(255) NOT NULL,
-    TrainingTypeID INT,
+    TrainingTypeId INT,
     TrainingDate DATE NOT NULL,
     TrainingDuration INT NOT NULL,
-    FOREIGN KEY (TrainingTypeID) REFERENCES TrainingTypes(TrainingTypeID),
-    FOREIGN KEY (TrainerID) REFERENCES Trainers(TrainerID),
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID) ON DELETE CASCADE
+    FOREIGN KEY (TrainingTypeId) REFERENCES TrainingTypes(TrainingTypeId),
+    FOREIGN KEY (TrainerId) REFERENCES Trainers(TrainerId),
+    FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Customers_Trainers (
-    CustomerID INT,
-    TrainerID INT,
-    PRIMARY KEY (CustomerID, TrainerID),
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID) ON DELETE CASCADE,
-    FOREIGN KEY (TrainerID) REFERENCES Trainers(TrainerID) ON DELETE CASCADE
+    CustomerId INT,
+    TrainerId INT,
+    PRIMARY KEY (CustomerId, TrainerId),
+    FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId) ON DELETE CASCADE,
+    FOREIGN KEY (TrainerId) REFERENCES Trainers(TrainerId) ON DELETE CASCADE
 );
 
 
 --CREATE TABLE IF NOT EXISTS Trainings_Customers (
---    TrainingID INT,
---    CustomerID INT,
---    PRIMARY KEY (TrainingID, CustomerID),
---    FOREIGN KEY (TrainingID) REFERENCES Trainings(TrainingID),
---    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
---    UNIQUE (CustomerID)  -- Ensure that each Customer is associated with a specific Training only once
+--    TrainingId INT,
+--    CustomerId INT,
+--    PRIMARY KEY (TrainingId, CustomerId),
+--    FOREIGN KEY (TrainingId) REFERENCES Trainings(TrainingId),
+--    FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId),
+--    UNIQUE (CustomerId)  -- Ensure that each Customer is associated with a specific Training only once
 --);
 --
 --CREATE TABLE IF NOT EXISTS Trainings_Trainers (
---    TrainingID INT,
---    TrainerID INT,
---    PRIMARY KEY (TrainingID, TrainerID),
---    FOREIGN KEY (TrainingID) REFERENCES Trainings(TrainingID),
---    FOREIGN KEY (TrainerID) REFERENCES Trainers(TrainerID),
---    UNIQUE (TrainerID)  -- Ensure that each Trainer is associated with a specific Training only once
+--    TrainingId INT,
+--    TrainerId INT,
+--    PRIMARY KEY (TrainingId, TrainerId),
+--    FOREIGN KEY (TrainingId) REFERENCES Trainings(TrainingId),
+--    FOREIGN KEY (TrainerId) REFERENCES Trainers(TrainerId),
+--    UNIQUE (TrainerId)  -- Ensure that each Trainer is associated with a specific Training only once
 --);
 --
 --
 --
 --CREATE TABLE IF NOT EXISTS Trainings_TrainingTypes (
---    TrainingID INT,
---    TrainingTypeID INT,
---    PRIMARY KEY (TrainingID, TrainingTypeID),
---    FOREIGN KEY (TrainingID) REFERENCES Trainings(TrainingID),
---    FOREIGN KEY (TrainingTypeID) REFERENCES TrainingTypes(TrainingTypeID),
---    UNIQUE (TrainingTypeID)  -- Ensure that each TrainingType is associated with a specific Training only once
+--    TrainingId INT,
+--    TrainingTypeId INT,
+--    PRIMARY KEY (TrainingId, TrainingTypeId),
+--    FOREIGN KEY (TrainingId) REFERENCES Trainings(TrainingId),
+--    FOREIGN KEY (TrainingTypeId) REFERENCES TrainingTypes(TrainingTypeId),
+--    UNIQUE (TrainingTypeId)  -- Ensure that each TrainingType is associated with a specific Training only once
 --);
 
 --CREATE TABLE IF NOT EXISTS Trainers_TrainingTypes (
---    TrainerID INT,
---    TrainingTypeID INT,
---    PRIMARY KEY (TrainerID, TrainingTypeID),
---    FOREIGN KEY (TrainerID) REFERENCES Trainers(TrainerID),
---    FOREIGN KEY (TrainingTypeID) REFERENCES TrainingTypes(TrainingTypeID)
+--    TrainerId INT,
+--    TrainingTypeId INT,
+--    PRIMARY KEY (TrainerId, TrainingTypeId),
+--    FOREIGN KEY (TrainerId) REFERENCES Trainers(TrainerId),
+--    FOREIGN KEY (TrainingTypeId) REFERENCES TrainingTypes(TrainingTypeId)
 --);

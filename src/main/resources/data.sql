@@ -1,9 +1,9 @@
 -- Insert Trainers
 INSERT INTO Users (FirstName, LastName, Username, Password, IsActive) VALUES
-('Tim', 'Smith', 'Tim.Smith', 'abcdefghij', TRUE),
-('Sam', 'Jones', 'Sam.Jones', 'bcdefghijk', TRUE),
-('John', 'Doe', 'John.Doe', 'ijklmnopqr', TRUE),
-('Jane', 'Smith', 'Jane.Smith', 'mnopqrstuv', TRUE);
+('Tim', 'Smith', 'Tim.Smith', '0123456789', TRUE),
+('Sam', 'Jones', 'Sam.Jones', '0123456789', TRUE),
+('John', 'Doe', 'John.Doe', '0123456789', TRUE),
+('Jane', 'Smith', 'Jane.Smith', '0123456789', TRUE);
 
 INSERT INTO Customers (DateOfBirth, Address, UserID) VALUES
 (DATE '2000-02-21', 'address of customer 1', 3),

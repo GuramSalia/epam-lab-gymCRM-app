@@ -3,8 +3,8 @@ package com.epam.epamlabgymCRMapp.service;
 import com.epam.epamlabgymCRMapp.model.Trainer;
 import com.epam.epamlabgymCRMapp.model.Training;
 import com.epam.epamlabgymCRMapp.model.TrainingType;
-import com.epam.epamlabgymCRMapp.repository.TrainerDAO;
-import com.epam.epamlabgymCRMapp.repository.TrainingDAO;
+import com.epam.epamlabgymCRMapp.dao.TrainerDAO;
+import com.epam.epamlabgymCRMapp.dao.TrainingDAO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +39,7 @@ public class TrainingService {
             return Optional.empty();
         } else {
             trainingDAO.create(training);
-            log.info(">>>> Creating training: " + training.getName());
+            log.info(">>>> Creating training: " + training.getTrainingName());
             return trainingDAO.getById(training.getTrainingId());
         }
     }

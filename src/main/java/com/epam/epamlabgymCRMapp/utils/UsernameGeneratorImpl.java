@@ -1,8 +1,10 @@
 package com.epam.epamlabgymCRMapp.utils;
 
 import com.epam.epamlabgymCRMapp.model.User;
-import com.epam.epamlabgymCRMapp.repository.CustomerDAO;
-import com.epam.epamlabgymCRMapp.repository.TrainerDAO;
+import com.epam.epamlabgymCRMapp.dao.CustomerDAO;
+import com.epam.epamlabgymCRMapp.dao.TrainerDAO;
+import com.epam.epamlabgymCRMapp.repository.CustomerRepository;
+import com.epam.epamlabgymCRMapp.repository.TrainerRepository;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -17,22 +19,22 @@ import java.util.function.Function;
 @Setter
 public class UsernameGeneratorImpl implements UsernameGenerator {
 
-    private final TrainerDAO trainerDAO;
-    private final CustomerDAO customerDAO;
+    private final CustomerRepository customerRepository;
+    private final TrainerRepository trainerRepository;
 
-    public UsernameGeneratorImpl(TrainerDAO trainerDAO, CustomerDAO customerDAO) {
-        this.trainerDAO = trainerDAO;
-        this.customerDAO = customerDAO;
+    public UsernameGeneratorImpl(CustomerRepository customerRepository, TrainerRepository trainerRepository) {
+        this.customerRepository = customerRepository;
+        this.trainerRepository = trainerRepository;
     }
 
     public String generateUsername(User user) {
         String base = user.getFirstName() + "." + user.getLastName();
         int counter = 1;
         String username = base;
-        Function<String, Boolean> isUniqueInTrainers = u -> isUnique(user, u, trainerDAO.getTrainers());
-        Function<String, Boolean> isUniqueInTrainees = u -> isUnique(user, u, customerDAO.getCustomers());
+        Function<String, Boolean> isUniqueInCustomers = u -> isUnique(user, u, customerRepository.findAll());
+        Function<String, Boolean> isUniqueInTrainers = u -> isUnique(user, u, trainerRepository.findAll());
 
-        while (!isUniqueInTrainees.apply(username) || !isUniqueInTrainers.apply(username)) {
+        while (!isUniqueInCustomers.apply(username) || !isUniqueInTrainers.apply(username)) {
             username = base + counter++;
         }
 
