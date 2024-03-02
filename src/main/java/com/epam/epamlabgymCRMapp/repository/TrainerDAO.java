@@ -13,4 +13,7 @@ public interface TrainerDAO {
     public Optional<Trainer> update(Trainer trainer);
     public Optional<Trainer> getById(int id);
     List<User> getTrainers();
+
+    Optional<Trainer> getByUsername(String username);
+
 }

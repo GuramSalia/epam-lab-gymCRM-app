@@ -22,7 +22,6 @@ public class TrainerService {
         this.usernameGenerator = usernameGenerator;
     }
 
-    // create/update/select Trainer profile
     public Optional<Trainer> create(Trainer trainer) {
         trainer.setPassword(RandomPasswordGenerator.generateRandomPassword());
         trainer.setUsername(usernameGenerator.generateUsername(trainer));
@@ -42,5 +41,10 @@ public class TrainerService {
     public List<User> getTrainers() {
         log.info(">>>> Getting trainers");
         return trainerDAO.getTrainers();
+    }
+
+    public boolean isTrainerCreditentialsValid(String password, String username) {
+        Optional<Trainer> trainer = trainerDAO.getByUsername(username);
+        return trainer.map(t -> t.getPassword().equals(password)).orElse(false);
     }
 }

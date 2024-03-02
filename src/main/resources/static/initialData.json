@@ -1,7 +1,7 @@
 {
   "Trainer": [
     {
-      "id": 1,
+      "trainerId": 1,
       "specialization": "CARDIO",
       "firstName": "Tim",
       "lastName": "Smith",
@@ -10,7 +10,7 @@
       "active": true
     },
     {
-      "id": 2,
+      "trainerId": 2,
       "specialization": "STRENGTH",
       "firstName": "Sam",
       "lastName": "Jones",
@@ -21,7 +21,7 @@
   ],
   "Customer": [
     {
-      "id": 1,
+      "customerId": 1,
       "firstName": "John",
       "lastName": "Doe",
       "username": "John.Doe",
@@ -31,7 +31,7 @@
       "active": true
     },
     {
-      "id": 2,
+      "customerId": 2,
       "firstName": "Jane",
       "lastName": "Smith",
       "username": "Jane.Smith",
@@ -43,7 +43,7 @@
   ],
   "Training": [
     {
-      "id": 1,
+      "trainingId": 1,
       "customerId": 1,
       "trainerId": 1,
       "name": "Cardio Workout",
@@ -52,7 +52,7 @@
       "durationInMinutes": 60
     },
     {
-      "id": 2,
+      "trainingId": 2,
       "customerId": 2,
       "trainerId": 2,
       "name": "Strength Training",

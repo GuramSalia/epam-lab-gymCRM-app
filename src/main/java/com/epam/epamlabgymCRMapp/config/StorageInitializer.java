@@ -4,7 +4,6 @@ import com.epam.epamlabgymCRMapp.model.Customer;
 import com.epam.epamlabgymCRMapp.model.JsonDataContainer;
 import com.epam.epamlabgymCRMapp.model.Trainer;
 import com.epam.epamlabgymCRMapp.model.Training;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -43,11 +41,11 @@ public class StorageInitializer {
         try (InputStream inputStream = initialDataResource.getInputStream()) {
             JsonDataContainer root = om.readValue(inputStream, JsonDataContainer.class);
 
-            storage.setTrainers(root.trainers.stream().collect(Collectors.toMap(Trainer::getId, Function.identity())));
+            storage.setTrainers(root.trainers.stream().collect(Collectors.toMap(Trainer::getTrainerId, Function.identity())));
             storage.setCustomers(root.customers.stream()
-                                               .collect(Collectors.toMap(Customer::getId, Function.identity())));
+                                               .collect(Collectors.toMap(Customer::getCustomerId, Function.identity())));
             storage.setTrainings(root.trainings.stream()
-                                               .collect(Collectors.toMap(Training::getId, Function.identity())));
+                                               .collect(Collectors.toMap(Training::getTrainingId, Function.identity())));
         } catch (IOException e) {
             log.error("Error initializing InMemoryStorage", e);
         }

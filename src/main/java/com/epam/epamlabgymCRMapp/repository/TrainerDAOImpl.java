@@ -21,7 +21,7 @@ public class TrainerDAOImpl implements TrainerDAO {
 
     @Override
     public Optional<Trainer> create(Trainer trainer) {
-        int id = trainer.getId();
+        int id = trainer.getTrainerId();
         if(trainers.containsKey(id)){
             log.error("Trainer with id {} already exists", id);
             return Optional.empty();
@@ -32,7 +32,7 @@ public class TrainerDAOImpl implements TrainerDAO {
 
     @Override
     public Optional<Trainer> update(Trainer trainer) {
-        int id = trainer.getId();
+        int id = trainer.getTrainerId();
         if(trainers.containsKey(id)){
             trainers.put(id, trainer);
             return Optional.of(trainers.get(id));
@@ -48,4 +48,10 @@ public class TrainerDAOImpl implements TrainerDAO {
 
     @Override
     public List<User> getTrainers() {return new ArrayList<>(trainers.values());}
+
+    //not implemented
+    @Override
+    public Optional<Trainer> getByUsername(String username) {
+        return Optional.empty();
+    }
 }

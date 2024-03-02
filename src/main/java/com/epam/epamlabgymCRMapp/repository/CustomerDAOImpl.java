@@ -19,7 +19,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     public CustomerDAOImpl(InMemoryStorage storage) {this.customers = storage.getCustomers();}
 
     public Optional<Customer> create(Customer customer) {
-        int id = customer.getId();
+        int id = customer.getCustomerId();
         if (customers.containsKey(id)) {
             log.error("Customer with id {} already exists", id);
             return Optional.empty();
@@ -30,7 +30,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     public Optional<Customer> update(Customer customer) {
-        int id = customer.getId();
+        int id = customer.getCustomerId();
         if (customers.containsKey(id)) {
             customers.put(id, customer);
             return Optional.of(customers.get(id));

@@ -1,6 +1,5 @@
 package com.epam.epamlabgymCRMapp.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,7 @@ import java.util.Objects;
 @Setter
 @Getter
 public class Training {
-    private int id;
+    private int trainingId;
     private int trainerId;
     private int customerId;
     private String name;
@@ -24,12 +23,12 @@ public class Training {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Training training = (Training) o;
-        return getId() == training.getId();
+        return getTrainingId() == training.getTrainingId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getId(), getTrainerId(), getName(), getType(), getDate(), getDurationInMinutes());
+        return Objects.hash(getTrainingId(), getTrainingId(), getTrainerId(), getName(), getType(), getDate(), getDurationInMinutes());
     }
 
     @Override
@@ -44,6 +43,6 @@ public class Training {
             dateString = year + "-" + month + "-" + day;
         }
 
-        return "Training{" + "\n  id=" + id + ", \n  traineeId=" + id + ", \n  trainerId=" + trainerId + ", \n  name='" + name + '\'' + ", \n  type=" + type + ", \n  date=" + dateString + ", \n  durationInMinutes=" + durationInMinutes + '}';
+        return "Training{" + "\n  id=" + trainingId + ", \n  traineeId=" + trainingId + ", \n  trainerId=" + trainerId + ", \n  name='" + name + '\'' + ", \n  type=" + type + ", \n  date=" + dateString + ", \n  durationInMinutes=" + durationInMinutes + '}';
     }
 }

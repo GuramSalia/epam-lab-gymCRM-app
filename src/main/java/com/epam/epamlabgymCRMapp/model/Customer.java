@@ -1,6 +1,7 @@
 package com.epam.epamlabgymCRMapp.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -8,8 +9,8 @@ import java.util.Objects;
 
 @Setter
 @Getter
-public class Customer extends User{
-    private int id;
+public class Customer extends User {
+    private int customerId;
     private Date dob;
     private String address;
 
@@ -25,7 +26,7 @@ public class Customer extends User{
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             dobString = year + "-" + month + "-" + day;
         }
-        return "Customer{" + "\n  id=" + id + ", \n  name='" + getFirstName() + ' ' + getLastName() + '\'' + ", \n  username='" + getUsername() + '\'' + ", \n  Address='" + getAddress() + '\'' + ", \n  dob=" + dobString + ", \n  isActive='" + isActiveString + '\'' + '}';
+        return "Customer{" + "\n  id=" + customerId + ", \n  name='" + getFirstName() + ' ' + getLastName() + '\'' + ", \n  username='" + getUsername() + '\'' + ", \n  Address='" + getAddress() + '\'' + ", \n  dob=" + dobString + ", \n  isActive='" + isActiveString + '\'' + '}';
     }
 
     @Override
@@ -33,12 +34,11 @@ public class Customer extends User{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer trainee = (Customer) o;
-        return getId() == trainee.getId();
+        return getCustomerId() == trainee.getCustomerId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName());
+        return Objects.hash(getCustomerId(), getFirstName(), getLastName());
     }
-
 }
